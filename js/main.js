@@ -4,6 +4,7 @@ const container = document.querySelector(".content");
 // function to generate bars
 function generatebars(num = 20) {
 
+
     //for loop to generate 20 bars
     for (let i = 0; i < num; i += 1) {
 
@@ -29,8 +30,8 @@ function generatebars(num = 20) {
         barLabel.classList.add("bar_id");
 
         // Assign value to "label"
-        barLabel.innerHTML = value;
 
+        barLabel.innerHTML = value;
         // Append "Label" to "div"
         bar.appendChild(barLabel);
 
@@ -39,8 +40,55 @@ function generatebars(num = 20) {
     }
 }
 
+// asynchronous function to perform "Insertion Sort"
+async function insertionSort(delay = 600) {
+
+    let bars = document.querySelectorAll(".bar");
+    for (var i = 0; i < bars.length; i += 1) {
+
+        var j = i;
+        var k = j - 1;
+        bars[j].style.backgroundColor = "darkblue";
+
+        await new Promise((resolve) =>
+            setTimeout(() => {
+                resolve();
+            }, 600)
+        );
+
+        while (j > k && k > -1) {
+            bars[j].style.backgroundColor = "red";
+            bars[k].style.backgroundColor = "  rgb(24, 190, 255)";
+            var height = bars[j].style.height;
+            var value = parseInt(bars[j].childNodes[0].innerHTML);
+            var valueleft = parseInt(bars[k].childNodes[0].innerHTML);
+
+            if (value < valueleft) {
+
+                bars[j].style.height = bars[k].style.height;
+                bars[k].style.height = height;
+                bars[j].childNodes[0].innerText = bars[k].childNodes[0].innerText;
+                bars[k].childNodes[0].innerText = value;
+            }
+            j--;
+            k--;
+        }
+
+        // To pause the execution of code for 300 milliseconds
+        await new Promise((resolve) =>
+            setTimeout(() => {
+                resolve();
+            }, 600)
+        );
+    }
+    for (var i = 0; i < bars.length; i++) {
+        bars[i].style.backgroundColor = " rgb(49, 226, 13)";
+    }
+    enable();
+}
 // asynchronous function to perform "Selection Sort"
 async function selectionSort(delay = 300) {
+
     let bars = document.querySelectorAll(".bar");
     // Assign 0 to min_idx
     var min_idx = 0;
@@ -105,14 +153,7 @@ async function selectionSort(delay = 300) {
         // Provide lightgreen color to the ith bar
         bars[i].style.backgroundColor = " rgb(49, 226, 13)";
     }
-
-    // To enable the button "Generate New Array" after final(sorted)
-    document.getElementById("btn").disabled = false;
-    document.getElementById("btn").style.backgroundColor = "#6f459e";
-
-    // To enable the button "Selection Sort" after final(sorted)
-    document.getElementById("btn").disabled = false;
-    document.getElementById("btn").style.backgroundColor = "#6f459e";
+    enable();
 }
 
 // Call "generatebars" function
@@ -120,16 +161,50 @@ generatebars();
 
 // function to generate new random array 
 function generateOnClick() {
-    window.location.reload();
+    document.querySelector(".content").innerHTML = "";
+    generatebars();
 }
 
 //  function to disable the button
 function disable() {
     // To disable the button "Generate New Array"
-    document.getElementById("btn").disabled = true;
-    document.getElementById("btn").style.backgroundColor = "#d8b6ff";
+    document.getElementById("btn1").disabled = true;
+    document.getElementById("btn1").style.backgroundColor = "#d8b6ff";
+    document.getElementById("btn2").disabled = true;
+    document.getElementById("btn2").style.backgroundColor = "#d8b6ff";
 
-    // To disable the button "Selection Sort"
-    document.getElementById("btn").disabled = true;
-    document.getElementById("btn").style.backgroundColor = "#d8b6ff";
+
+    document.getElementById("bubble_srt_btn").disabled = true;
+    document.getElementById("bubble_srt_btn").style.backgroundColor = "#d8b6ff";
+
+    document.getElementById("selection_srt_btn").disabled = true;
+    document.getElementById("selection_srt_btn").style.backgroundColor = "#d8b6ff";
+    document.getElementById("merge_srt_btn").disabled = true;
+    document.getElementById("merge_srt_btn").style.backgroundColor = "#d8b6ff";
+    document.getElementById("insertion_srt_btn").disabled = true;
+    document.getElementById("insertion_srt_btn").style.backgroundColor = "#d8b6ff";
+    document.getElementById("quick_srt_btn").disabled = true;
+    document.getElementById("quick_srt_btn").style.backgroundColor = "#d8b6ff";
+}
+
+function enable() {
+    document.getElementById("bubble_srt_btn").disabled = false;
+    document.getElementById("bubble_srt_btn").style.backgroundColor = "#6f459e";
+
+    document.getElementById("selection_srt_btn").disabled = false;
+    document.getElementById("selection_srt_btn").style.backgroundColor = "#6f459e";
+    document.getElementById("merge_srt_btn").disabled = false;
+    document.getElementById("merge_srt_btn").style.backgroundColor = "#6f459e";
+    document.getElementById("insertion_srt_btn").disabled = false;
+    document.getElementById("insertion_srt_btn").style.backgroundColor = "#6f459e";
+    document.getElementById("quick_srt_btn").disabled = false;
+    document.getElementById("quick_srt_btn").style.backgroundColor = "#6f459e";
+
+    // To enable the button "Generate New Array" after final(sorted)
+    document.getElementById("btn1").disabled = false;
+    document.getElementById("btn1").style.backgroundColor = "#6f459e";
+
+    // To enable the button "Selection Sort" after final(sorted)
+    document.getElementById("btn2").disabled = false;
+    document.getElementById("btn2").style.backgroundColor = "#6f459e";
 }

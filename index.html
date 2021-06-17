@@ -21,11 +21,13 @@
         <label for="menu-bar" class="fas fa-bars"></label>
         <nav class="navbar">
 
-            <a href="#home" id="btn" onclick="return bubbleSort()">Bubble Sort</a>
-            <a href="#home" id="btn" onclick="return bubbleSort()">Quick Sort</a>
-            <a href="#home" id="btn" onclick="return bubbleSort()">Merge Sort</a>
-            <a href="#home" id="btn" onclick="return selectionSort() , disable()">Selection Sort</a>
-            <a href="#home" id="btn" onclick="return bubbleSort()">Insertion Sort</a>
+            <button type="button" id="bubble_srt_btn" class="navbar-btn" onclick="bubbleSort()">Bubble Sort</button>
+            <button type="button" id="quick_srt_btn" class="navbar-btn" onclick="bubbleSort()">Quick Sort</button>
+            <button type="button" id="merge_srt_btn" class="navbar-btn" onclick="bubbleSort()">Merge Sort</button>
+            <button type="button" id="selection_srt_btn" class="navbar-btn" onclick="selectionSort() ; disable()">Selection
+                Sort</button>
+            <button type="button" id="insertion_srt_btn" class="navbar-btn" onclick="insertionSort(); disable()">Insertion
+                Sort</button>
         </nav>
     </header>
     <!-- Header ends here  -->
@@ -33,8 +35,8 @@
     <section class="canvas" id="landing_page">
         <section class="content"></section>
         <div class="buttons">
-            <button type="button" id="btn" class="btn" onclick="generateOnClick()">Generate new Array</button>
-            <button type="button" id="btn" class="btn" onclick="resetOnClick()">Reset Array</button>
+            <button type="button" id="btn1" class="btn" onclick="generateOnClick()">Generate new Array</button>
+            <button type="button" id="btn2" class="btn" onclick="resetOnClick()">Reset Array</button>
         </div>
     </section>
 
