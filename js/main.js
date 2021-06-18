@@ -56,6 +56,11 @@ async function bubbleSort(delay = 300) {
                 }, 300)
             );
             if (a > b) {
+                await new Promise((resolve) =>
+                    setTimeout(() => {
+                        resolve();
+                    }, 200)
+                );
                 bars[j].childNodes[0].innerText = b;
                 bars[j].style.height = height_b;
                 bars[j + 1].childNodes[0].innerText = a;
@@ -69,11 +74,22 @@ async function bubbleSort(delay = 300) {
                 resolve();
             }, 300)
         );
-        bars[j].style.backgroundColor = "rgb(49, 226, 13)"
+        bars[j].style.backgroundColor = "rgb(49, 226, 13)";
 
     }
+    bars[0].style.backgroundColor = "rgb(49, 226, 13)";
     enable();
 }
+async function quickSort(delay = 500) {
+
+    let bars = document.querySelector("")
+
+}
+
+function find_pivot() {
+
+}
+
 // asynchronous function to perform "Insertion Sort"
 async function insertionSort(delay = 600) {
     let bars = document.querySelectorAll(".bar");
@@ -203,34 +219,19 @@ function disable() {
     document.getElementById("btn2").style.backgroundColor = "#d8b6ff";
 
     document.getElementById("bubble_srt_btn").disabled = true;
-    document.getElementById("bubble_srt_btn").style.backgroundColor = "#d8b6ff";
-
     document.getElementById("selection_srt_btn").disabled = true;
-    document.getElementById("selection_srt_btn").style.backgroundColor =
-        "#d8b6ff";
     document.getElementById("merge_srt_btn").disabled = true;
-    document.getElementById("merge_srt_btn").style.backgroundColor = "#d8b6ff";
     document.getElementById("insertion_srt_btn").disabled = true;
-    document.getElementById("insertion_srt_btn").style.backgroundColor =
-        "#d8b6ff";
     document.getElementById("quick_srt_btn").disabled = true;
-    document.getElementById("quick_srt_btn").style.backgroundColor = "#d8b6ff";
 }
 
 function enable() {
     document.getElementById("bubble_srt_btn").disabled = false;
-    document.getElementById("bubble_srt_btn").style.backgroundColor = "#6f459e";
 
     document.getElementById("selection_srt_btn").disabled = false;
-    document.getElementById("selection_srt_btn").style.backgroundColor =
-        "#6f459e";
     document.getElementById("merge_srt_btn").disabled = false;
-    document.getElementById("merge_srt_btn").style.backgroundColor = "#6f459e";
     document.getElementById("insertion_srt_btn").disabled = false;
-    document.getElementById("insertion_srt_btn").style.backgroundColor =
-        "#6f459e";
     document.getElementById("quick_srt_btn").disabled = false;
-    document.getElementById("quick_srt_btn").style.backgroundColor = "#6f459e";
 
     // To enable the button "Generate New Array" after final(sorted)
     document.getElementById("btn1").disabled = false;
