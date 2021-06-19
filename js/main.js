@@ -38,10 +38,8 @@ function generatebars(num = 20) {
 }
 
 async function bubbleSort(delay = 300) {
-
     let bars = document.querySelectorAll(".bar");
     for (var i = 0; i < bars.length - 1; i += 1) {
-
         for (var j = 0; j < bars.length - i - 1; j += 1) {
             bars[j].style.backgroundColor = "pink";
             bars[j + 1].style.backgroundColor = "blue";
@@ -75,19 +73,108 @@ async function bubbleSort(delay = 300) {
             }, 300)
         );
         bars[j].style.backgroundColor = "rgb(49, 226, 13)";
-
     }
     bars[0].style.backgroundColor = "rgb(49, 226, 13)";
     enable();
 }
-async function quickSort(delay = 500) {
 
-    let bars = document.querySelector("")
-
+async function quickSort(delay = 300) {
+    let bars = document.querySelectorAll(".bar");
+    await quick(bars, 0, bars.length - 1);
+    for (var i = 0; i < bars.length; i++) {
+        bars[i].style.backgroundColor = " rgb(49, 226, 13)";
+    }
+    enable();
 }
 
-function find_pivot() {
+async function quick(array, low, high) {
+    if (low < high) {
+        var mid = await find_pivot(array, low, high);
+        array[mid].style.backgroundColor = " rgb(49, 226, 13)";
+        await quick(array, low, mid - 1);
+        await quick(array, mid + 1, high);
+    }
+}
 
+async function find_pivot(array, low, high) {
+    console.log("here");
+    var i = low;
+    var j = high + 1;
+    var pivot = parseInt(array[i].childNodes[0].innerText);
+    var pivot_index = low;
+    console.log(array[pivot_index].childNodes[0].innerText);
+    array[pivot_index].style.backgroundColor = "red";
+    do {
+        await new Promise((resolve) =>
+            setTimeout(() => {
+                resolve();
+            }, 300)
+        );
+        do {
+
+            i += 1;
+            array[i].style.backgroundColor = "darkblue";
+            await new Promise((resolve) =>
+                setTimeout(() => {
+                    resolve();
+                }, 300)
+            );
+            array[i].style.backgroundColor = "rgb(24, 190, 255)";
+
+        } while (pivot > parseInt(array[i].childNodes[0].innerHTML) && i < high);
+
+        array[i].style.backgroundColor = "blue";
+
+        do {
+
+            j -= 1;
+            array[j].style.backgroundColor = "darkblue";
+            await new Promise((resolve) =>
+                setTimeout(() => {
+                    resolve();
+                }, 500)
+            );
+            array[j].style.backgroundColor = "  rgb(24, 190, 255)";
+        } while (pivot < parseInt(array[j].childNodes[0].innerHTML));
+
+        array[j].style.backgroundColor = "blue";
+
+        if (i < j) {
+            await new Promise((resolve) =>
+                setTimeout(() => {
+                    resolve();
+                }, 500)
+            );
+            var a = parseInt(array[i].childNodes[0].innerHTML);
+            var b = parseInt(array[j].childNodes[0].innerHTML);
+            var height_a = array[i].style.height;
+            var height_b = array[j].style.height;
+            array[i].childNodes[0].innerText = b;
+            array[j].childNodes[0].innerText = a;
+            array[i].style.height = height_b;
+            array[j].style.height = height_a;
+            array[i].style.backgroundColor = "rgb(24, 190, 255)";
+            array[j].style.backgroundColor = "rgb(24, 190, 255)";
+        }
+
+    } while (i < j);
+
+
+    var height_pivot = array[low].style.height;
+    array[low].childNodes[0].innerText = parseInt(array[j].childNodes[0].innerHTML);
+    array[low].style.backgroundColor = "  rgb(24, 190, 255)";
+    array[low].style.height = array[j].style.height;
+    array[j].childNodes[0].innerText = pivot;
+    array[j].style.height = height_pivot;
+    array[j].style.backgroundColor = "pink";
+
+    await new Promise((resolve) =>
+        setTimeout(() => {
+            resolve();
+        }, 500)
+    );
+
+    return j;
 }
 
 // asynchronous function to perform "Insertion Sort"
@@ -98,9 +185,7 @@ async function insertionSort(delay = 600) {
         var k = j - 1;
         bars[j].style.backgroundColor = "darkblue";
 
-
         while (j > k && k > -1) {
-
             bars[j].style.backgroundColor = "red";
             bars[k].style.backgroundColor = "  rgb(24, 190, 255)";
             var height = bars[j].style.height;
