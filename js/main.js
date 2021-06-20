@@ -37,7 +37,111 @@ function generatebars(num = 20) {
     }
 }
 
+async function mergeSort(delay = 300) {
+
+
+    document.getElementById("merge_srt_btn").style.backgroundColor = "red";
+
+    let bars = document.querySelectorAll(".bar");
+
+    await sortData(bars, 0, bars.length - 1);
+    enable();
+}
+
+async function sortData(array, low, high) {
+    if (low < high) {
+        var mid = Math.floor(high - (high - low) / 2);
+        array[mid].style.backgroundColor = "red";
+        await new Promise((resolve) =>
+            setTimeout(() => {
+                resolve();
+            }, 500)
+        );
+        await sortData(array, low, mid);
+        await sortData(array, mid + 1, high);
+        await merge(array, low, mid, mid + 1, high);
+
+    }
+}
+
+async function merge(array, low1, high1, low2, high2) {
+    document.querySelector(".information").innerHTML = '';
+    var len_array = high2 - low1 + 1;
+    var helper = new Array(len_array);
+    var helper_take_height = new Array(len_array);
+    var k = 0;
+    var i = low1;
+    var j = low2;
+    array[low1].style.backgroundColor = "pink";
+    array[low2].style.backgroundColor = "pink";
+    while (i <= high1 && j <= high2) {
+        await new Promise((resolve) =>
+            setTimeout(() => {
+                resolve();
+            }, 500)
+        );
+        array[i].style.backgroundColor = "blue";
+        array[j].style.backgroundColor = "blue";
+        if (parseInt(array[i].childNodes[0].innerHTML) < parseInt(array[j].childNodes[0].innerHTML)) {
+
+
+            helper[k] = parseInt(array[i].childNodes[0].innerHTML);
+            helper_take_height[k] = array[i].style.height;
+            i += 1;
+            k += 1;
+            await new Promise((resolve) =>
+                setTimeout(() => {
+                    resolve();
+                }, 500)
+            );
+        } else if (parseInt(array[i].childNodes[0].innerHTML) >= parseInt(array[j].childNodes[0].innerHTML)) {
+            array[i].style.backgroundColor = "yellow";
+            array[j].style.backgroundColor = "yellow";
+            helper[k] = parseInt(array[j].childNodes[0].innerHTML);
+            helper_take_height[k] = array[j].style.height;
+            j += 1;
+            k += 1;
+            await new Promise((resolve) =>
+                setTimeout(() => {
+                    resolve();
+                }, 500)
+            );
+        }
+        if (j < high2 && i < high1) {
+            array[i].style.backgroundColor = "blue";
+            array[j].style.backgroundColor = "blue";
+        }
+    }
+
+    while (i <= high1) {
+
+        helper[k] = parseInt(array[i].childNodes[0].innerHTML);
+        array[i].style.backgroundColor = "blue";
+        helper_take_height[k] = array[i].style.height;
+        i += 1;
+        k += 1;
+    }
+    while (j <= high2) {
+        helper[k] = parseInt(array[j].childNodes[0].innerHTML);
+        array[j].style.backgroundColor = "blue";
+        helper_take_height[k] = array[j].style.height;
+        j += 1;
+        k += 1;
+    }
+
+    for (var i = low1, k = 0; i <= high2; i += 1, k += 1) {
+        await new Promise((resolve) =>
+            setTimeout(() => {
+                resolve();
+            }, 500)
+        );
+        array[i].childNodes[0].innerHTML = helper[k];
+        array[i].style.height = helper_take_height[k];
+        array[i].style.backgroundColor = "rgb(49, 226, 13)";
+    }
+}
 async function bubbleSort(delay = 300) {
+    document.getElementById("bubble_srt_btn").style.backgroundColor = "red";
     let bars = document.querySelectorAll(".bar");
     for (var i = 0; i < bars.length - 1; i += 1) {
         for (var j = 0; j < bars.length - i - 1; j += 1) {
@@ -66,6 +170,8 @@ async function bubbleSort(delay = 300) {
                 bars[j].style.backgroundColor = "yellow";
                 bars[j + 1].style.backgroundColor = "yellow";
             }
+            bars[j + 1].style.backgroundColor = "rgb(24, 190, 255)";
+            bars[j].style.backgroundColor = "rgb(24, 190, 255)";
         }
         await new Promise((resolve) =>
             setTimeout(() => {
@@ -79,6 +185,7 @@ async function bubbleSort(delay = 300) {
 }
 
 async function quickSort(delay = 300) {
+    document.getElementById("quick_srt_btn").style.backgroundColor = "red";
     let bars = document.querySelectorAll(".bar");
     await quick(bars, 0, bars.length - 1);
     for (var i = 0; i < bars.length; i++) {
@@ -97,12 +204,11 @@ async function quick(array, low, high) {
 }
 
 async function find_pivot(array, low, high) {
-    console.log("here");
     var i = low;
     var j = high + 1;
     var pivot = parseInt(array[i].childNodes[0].innerText);
     var pivot_index = low;
-    console.log(array[pivot_index].childNodes[0].innerText);
+
     array[pivot_index].style.backgroundColor = "red";
     do {
         await new Promise((resolve) =>
@@ -111,7 +217,6 @@ async function find_pivot(array, low, high) {
             }, 300)
         );
         do {
-
             i += 1;
             array[i].style.backgroundColor = "darkblue";
             await new Promise((resolve) =>
@@ -120,13 +225,11 @@ async function find_pivot(array, low, high) {
                 }, 300)
             );
             array[i].style.backgroundColor = "rgb(24, 190, 255)";
-
         } while (pivot > parseInt(array[i].childNodes[0].innerHTML) && i < high);
 
         array[i].style.backgroundColor = "blue";
 
         do {
-
             j -= 1;
             array[j].style.backgroundColor = "darkblue";
             await new Promise((resolve) =>
@@ -156,9 +259,7 @@ async function find_pivot(array, low, high) {
             array[i].style.backgroundColor = "rgb(24, 190, 255)";
             array[j].style.backgroundColor = "rgb(24, 190, 255)";
         }
-
     } while (i < j);
-
 
     var height_pivot = array[low].style.height;
     array[low].childNodes[0].innerText = parseInt(array[j].childNodes[0].innerHTML);
@@ -179,6 +280,7 @@ async function find_pivot(array, low, high) {
 
 // asynchronous function to perform "Insertion Sort"
 async function insertionSort(delay = 600) {
+    document.getElementById("insertion_srt_btn").style.backgroundColor = "red";
     let bars = document.querySelectorAll(".bar");
     for (var i = 0; i < bars.length; i += 1) {
         var j = i;
@@ -223,6 +325,7 @@ async function insertionSort(delay = 600) {
 }
 // asynchronous function to perform "Selection Sort"
 async function selectionSort(delay = 300) {
+    document.getElementById("selection_srt_btn").style.backgroundColor = "red";
     let bars = document.querySelectorAll(".bar");
     // Assign 0 to min_idx
     var min_idx = 0;
@@ -303,6 +406,9 @@ function disable() {
     document.getElementById("btn2").disabled = true;
     document.getElementById("btn2").style.backgroundColor = "#d8b6ff";
 
+    document.getElementById("btn3").disabled = true;
+    document.getElementById("btn3").style.backgroundColor = "#d8b6ff";
+
     document.getElementById("bubble_srt_btn").disabled = true;
     document.getElementById("selection_srt_btn").disabled = true;
     document.getElementById("merge_srt_btn").disabled = true;
@@ -312,12 +418,15 @@ function disable() {
 
 function enable() {
     document.getElementById("bubble_srt_btn").disabled = false;
-
     document.getElementById("selection_srt_btn").disabled = false;
     document.getElementById("merge_srt_btn").disabled = false;
     document.getElementById("insertion_srt_btn").disabled = false;
     document.getElementById("quick_srt_btn").disabled = false;
-
+    document.getElementById("insertion_srt_btn").style.backgroundColor = "#fff";
+    document.getElementById("quick_srt_btn").style.backgroundColor = "#fff";
+    document.getElementById("merge_srt_bt").style.backgroundColor = "#fff";
+    document.getElementById("bubble_srt_btn").style.backgroundColor = "#fff";
+    document.getElementById("selection_srt_btn").style.backgroundColor = "#fff";
     // To enable the button "Generate New Array" after final(sorted)
     document.getElementById("btn1").disabled = false;
     document.getElementById("btn1").style.backgroundColor = "#6f459e";
@@ -325,4 +434,7 @@ function enable() {
     // To enable the button "Selection Sort" after final(sorted)
     document.getElementById("btn2").disabled = false;
     document.getElementById("btn2").style.backgroundColor = "#6f459e";
+
+    document.getElementById("btn3").disabled = false;
+    document.getElementById("btn3").style.backgroundColor = "#6f459e";
 }
