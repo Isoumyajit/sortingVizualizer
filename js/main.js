@@ -1,6 +1,6 @@
 "use strict";
-const container = document.querySelector(".content");
-
+const container = document.querySelector(".bars-container");
+// var flag = true;
 // function to generate bars
 function generatebars(num = 20) {
     //for loop to generate 20 bars
@@ -39,11 +39,11 @@ function generatebars(num = 20) {
 
 async function mergeSort(delay = 300) {
 
-
+    const qAll = document.querySelectorAll(".sort-info");
+    qAll.forEach((el) => el.classList.remove("show"));
+    document.querySelector(".merge-sort").classList.add("show");
     document.getElementById("merge_srt_btn").style.backgroundColor = "red";
-
     let bars = document.querySelectorAll(".bar");
-
     await sortData(bars, 0, bars.length - 1);
     enable();
 }
@@ -141,8 +141,12 @@ async function merge(array, low1, high1, low2, high2) {
     }
 }
 async function bubbleSort(delay = 300) {
+    const qAll = document.querySelectorAll(".sort-info");
+    qAll.forEach((el) => el.classList.remove("show"));
+    document.querySelector(".bubble-sort").classList.add("show");
     document.getElementById("bubble_srt_btn").style.backgroundColor = "red";
     let bars = document.querySelectorAll(".bar");
+
     for (var i = 0; i < bars.length - 1; i += 1) {
         for (var j = 0; j < bars.length - i - 1; j += 1) {
             bars[j].style.backgroundColor = "pink";
@@ -172,14 +176,16 @@ async function bubbleSort(delay = 300) {
             }
             bars[j + 1].style.backgroundColor = "rgb(24, 190, 255)";
             bars[j].style.backgroundColor = "rgb(24, 190, 255)";
+
+            await new Promise((resolve) =>
+                setTimeout(() => {
+                    resolve();
+                }, 300)
+            );
         }
-        await new Promise((resolve) =>
-            setTimeout(() => {
-                resolve();
-            }, 300)
-        );
         bars[j].style.backgroundColor = "rgb(49, 226, 13)";
     }
+
     bars[0].style.backgroundColor = "rgb(49, 226, 13)";
     enable();
 }
@@ -394,20 +400,22 @@ generatebars();
 
 // function to generate new random array
 function generateOnClick() {
-    document.querySelector(".content").innerHTML = "";
+    document.querySelector(".bars-container").innerHTML = "";
     generatebars();
 }
 
+function pauseOnClick() {
+    flag = false;
+}
+
+function resumeOnClick() {
+    flag = true;
+}
 //  function to disable the button
 function disable() {
     // To disable the button "Generate New Array"
     document.getElementById("btn1").disabled = true;
     document.getElementById("btn1").style.backgroundColor = "#d8b6ff";
-    document.getElementById("btn2").disabled = true;
-    document.getElementById("btn2").style.backgroundColor = "#d8b6ff";
-
-    document.getElementById("btn3").disabled = true;
-    document.getElementById("btn3").style.backgroundColor = "#d8b6ff";
 
     document.getElementById("bubble_srt_btn").disabled = true;
     document.getElementById("selection_srt_btn").disabled = true;

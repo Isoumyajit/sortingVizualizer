@@ -43,7 +43,9 @@
     <!-- Header ends here  -->
 
     <section class="canvas" id="landing_page">
-        <section class="content"></section>
+        <section class="content">
+            <div class="bars-container"></div>
+        </section>
         <div class="buttons">
             <button type="button" id="btn1" class="btn btn-control" onclick="generateOnClick()">
           Generate new Array
@@ -54,9 +56,108 @@
             <button type="button" id="btn3" class="btn btn-control" onclick="resumeOnClick()">
           Resume
         </button>
-            <div class="information"></div>
         </div>
+        <hr />
     </section>
+    <div class="information">
+        <div class="sort-info merge-sort">
+            <h2>Merge Sort</h2>
+            <h3>Algorithm</h3>
+            <p>nvfknvknkfvn</p>
+        </div>
+        <div class="sort-info bubble-sort">
+            <h2>bubble Sort</h2>
+            <h3>Algorithm</h3>
+            <p>
+                Bubble Sort is the simplest sorting algorithm that works by repeatedly swapping the adjacent elements if they are in wrong order.
+                <br /> This sorting algorithm is comparison-based algorithm in which each pair of adjacent elements is compared and the elements are swapped if they are not in order. This algorithm is not suitable for large data sets as its average and
+                worst case complexity are of Ο(n2) where n is the number of items.
+
+                <h3>Example:</h3>
+                <br> First Pass: ( 5 1 4 2 8 ) –> ( 1 5 4 2 8 ),
+                <br> Here, algorithm compares the first two elements, and swaps since 5 > 1. ( 1 5 4 2 8 ) –> ( 1 4 5 2 8 ),
+                <br> Swap since 5 > 4 ( 1 4 5 2 8 ) –> ( 1 4 2 5 8 ),
+                <br> Swap since 5 > 2 ( 1 4 2 5 8 ) –> ( 1 4 2 5 8 ),
+                <br> Now, since these elements are already in order (8 > 5),
+                <br> algorithm does not swap them.
+                <br> Pass: ( 1 4 2 5 8 ) –> ( 1 4 2 5 8 ) ( 1 4 2 5 8 ) –> ( 1 2 4 5 8 ),
+                <br> Swap since 4 > 2 ( 1 2 4 5 8 ) –> ( 1 2 4 5 8 ) ( 1 2 4 5 8 ) –> ( 1 2 4 5 8 )
+                <br> Now, the array is already sorted, but our algorithm does not know if it is completed.
+                <br> The algorithm needs one whole pass without any swap to know it is sorted.
+                <br> Third Pass: ( 1 2 4 5 8 ) –> ( 1 2 4 5 8 ) ( 1 2 4 5 8 ) –> ( 1 2 4 5 8 ) ( 1 2 4 5 8 ) –> ( 1 2 4 5 8 ) ( 1 2 4 5 8 ) –> ( 1 2 4 5 8 )
+                <br>
+                <br><br>
+                <h3>Time Complexity :</h3><br>
+                <br>
+                <h5>Best Time: O(N)</h5>
+                <br>
+                <h5>Average Time: O(N^2)</h5>
+                <br>
+                <h5>Worst Time: O(N^2)</h5>
+            </p>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-xs-12">
+                    <div class="first">
+                        <h4>My Skills</h4>
+                        <p> Analytical Skills</p>
+                        <p> Problem-solving skills</p>
+                        <p> Critical-thinking skills</p>
+                        <p> Detail-oriented</p>
+                        <p> Multitasking</p>
+                        <p> Self-motivated</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-xs-12">
+                    <div class="second">
+                        <h4> Navigate</h4>
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Projects</a></li>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-xs-12">
+                    <div class="third">
+                        <h4> Contact</h4>
+                        <ul>
+                            <li>Andreea Mihaela Bunget </li>
+                            <li></li>
+
+
+                            <li><i class="far fa-envelope"></i> andreea@andreeabunget.co.uk</li>
+                            <li><i class="far fa-envelope"></i> email@yahoo.com</li>
+
+
+                            <li><i class="fas fa-map-marker-alt"></i> London, UK </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="line"></div>
+                    <div class="second2">
+                        <a href="https://codepen.io/AndreeaBunget" target="_blank"> <i class="fab fa-codepen fa-2x margin"></i></a>
+                        <a href="https://github.com/WebDeveloperCodeRep" target="_blank"> <i class="fab fa-github fa-2x margin"></i></a>
+                        <a href="https://www.linkedin.com/in/andreea-mihaela-bunget-a4248812b/" target="_blank"> <i class="fab fa-linkedin fa-2x margin"></i></a>
+                        <a href="https://www.youtube.com/channel/UCX674BUbomzBCakbb75lhfA?view_as=subscriber" target="_blank"><i class="fab fa-youtube fa-2x margin" ></i></a>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 <!-- linking index.js -->
