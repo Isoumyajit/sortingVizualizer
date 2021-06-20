@@ -422,11 +422,11 @@ function enable() {
     document.getElementById("merge_srt_btn").disabled = false;
     document.getElementById("insertion_srt_btn").disabled = false;
     document.getElementById("quick_srt_btn").disabled = false;
-    document.getElementById("insertion_srt_btn").style.backgroundColor = "#fff";
-    document.getElementById("quick_srt_btn").style.backgroundColor = "#fff";
-    document.getElementById("merge_srt_btn").style.backgroundColor = "#fff";
-    document.getElementById("bubble_srt_btn").style.backgroundColor = "#fff";
-    document.getElementById("selection_srt_btn").style.backgroundColor = "#fff";
+    document.getElementById("insertion_srt_btn").style.backgroundColor = "#00BF7F";
+    document.getElementById("quick_srt_btn").style.backgroundColor = "#00BF7F";
+    document.getElementById("merge_srt_btn").style.backgroundColor = "#00BF7F";
+    document.getElementById("bubble_srt_btn").style.backgroundColor = "#00BF7F";
+    document.getElementById("selection_srt_btn").style.backgroundColor = "#00BF7F";
     // To enable the button "Generate New Array" after final(sorted)
     document.getElementById("btn1").disabled = false;
     document.getElementById("btn1").style.backgroundColor = "#6f459e";
