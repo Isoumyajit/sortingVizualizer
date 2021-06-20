@@ -424,7 +424,7 @@ function enable() {
     document.getElementById("quick_srt_btn").disabled = false;
     document.getElementById("insertion_srt_btn").style.backgroundColor = "#fff";
     document.getElementById("quick_srt_btn").style.backgroundColor = "#fff";
-    document.getElementById("merge_srt_bt").style.backgroundColor = "#fff";
+    document.getElementById("merge_srt_btn").style.backgroundColor = "#fff";
     document.getElementById("bubble_srt_btn").style.backgroundColor = "#fff";
     document.getElementById("selection_srt_btn").style.backgroundColor = "#fff";
     // To enable the button "Generate New Array" after final(sorted)
