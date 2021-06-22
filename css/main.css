@@ -175,81 +175,96 @@
             justify-content: center;
         }
         
-        .information {
+        #information {
             margin-left: 100px;
             font-weight: 600;
+            position: relative;
         }
         
-        .information h2 {
+        #information h2 {
             font-size: xx-large;
             font-weight: 800;
             color: rgb(255, 86, 86);
         }
         
-        .information h3 {
+        #information h3 {
             font-weight: 700;
         }
         
-        .information h5 {
+        #information h5 {
             font-weight: 600;
         }
         
-        .information p {
+        #information p {
             line-height: 2.5rem;
             font-size: 1.2rem;
         }
         
         .sort-info {
             display: none;
+            width: 950px;
         }
         
-        .show {
-            display: block;
+        .padding-content {
+            box-shadow: 0 0.2rem 1rem 1rem rgba(233, 69, 69, 0.1);
+            position: relative;
+            width: fit-content;
+            padding: 5rem;
+            border-radius: 2rem;
+            margin-bottom: 7rem;
+        }
+        
+        .image img {
+            width: 400px;
+            height: 400px;
+            align-items: center;
+            position: relative;
+            /*  0 box-shadow: 0 2rem 2rem 2rem rgba(15, 14, 14, 0.1); */
+            margin: 2rem 2rem 2rem 2rem;
+            border-radius: 2rem;
+        }
+        
+        .algo-code {
+            background-color: #012a58;
+            width: fit-content;
+            height: fit-content;
+            align-items: baseline;
+            border-radius: 2rem;
+            box-shadow: 0 0.1rem 0.5rem 0.5rem rgba(15, 14, 14, 0.1);
+        }
+        
+        .codes {
+            font-size: 10px;
+            line-height: 2rem;
+            padding: 1rem;
+            margin: 2rem 2rem 2rem 2rem;
+            margin-right: 4rem;
+            color: #F83292;
+            width: 200px;
+            height: 400px;
+            align-items: flex-start;
+            position: relative;
+            /* box-shadow: 0 2rem 2rem 2rem rgba(15, 14, 14, 0.1); */
+            margin: 2rem 2rem 2rem 2rem;
+            border-radius: 2rem;
+        }
+        
+        .algo-info {
+            width: fit-content;
+            line-height: 1.5rem;
         }
         /* Fotter */
         
         .footer {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("http://andreeabunget.co.uk/Img/footer.jpg");
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
             background-size: cover;
         }
         
-        .first {
-            margin-top: 40px;
-            margin-bottom: 50px;
-            color: rgb(206, 206, 206);
-            font-family: 'Poppins', sans-serif;
-        }
-        
-        .first h4 {
-            font-size: 20px;
-            letter-spacing: 3px;
-            position: relative;
-            margin-bottom: 20px;
-            font-size: 1.6em;
-            color: #fff;
-            padding-bottom: 0.5em;
-        }
-        
-        .first h4::after {
-            content: '';
-            background: #66c83d;
-            width: 20%;
-            height: 2px;
-            position: absolute;
-            bottom: 0;
-            left: 0;
-        }
-        
-        .first p {
-            font-size: 14px;
-        }
-        
-        .second {
-            margin-top: 40px;
-            margin-bottom: 50px;
-            color: rgb(206, 206, 206);
-            font-family: 'Poppins', sans-serif;
-            text-align: center;
+        .dev-info {
+            margin-top: 1.8rem;
+            font-weight: 800;
+            font-size: x-large;
+            color: #00BF7F;
         }
         
         .second2 {
@@ -258,31 +273,6 @@
             color: rgb(206, 206, 206);
             font-family: 'Poppins', sans-serif;
             text-align: center;
-        }
-        
-        .second h4 {
-            font-size: 20px;
-            letter-spacing: 3px;
-            position: relative;
-            margin-bottom: 20px;
-            font-size: 1.6em;
-            color: #fff;
-            padding-bottom: 0.5em;
-        }
-        
-        .second h4::after {
-            content: '';
-            background: #66c83d;
-            width: 20%;
-            height: 2px;
-            position: absolute;
-            bottom: 0;
-            left: 40%;
-        }
-        
-        .second li {
-            list-style: none;
-            padding-bottom: 30px;
         }
         
         .second a,
@@ -301,72 +291,6 @@
             transition: 0.2s;
             text-shadow: 1px 1px 20px rgba(0, 0, 0, 1);
             text-decoration: none
-        }
-        
-        .third {
-            margin-top: 40px;
-            margin-bottom: 50px;
-            color: rgb(206, 206, 206);
-            font-family: 'Poppins', sans-serif;
-            text-align: right;
-        }
-        
-        .third h4 {
-            font-size: 20px;
-            letter-spacing: 3px;
-            position: relative;
-            margin-bottom: 20px;
-            font-size: 1.6em;
-            color: #fff;
-            padding-bottom: 0.5em;
-        }
-        
-        .third h4::after {
-            content: '';
-            background: #66c83d;
-            width: 20%;
-            height: 2px;
-            position: absolute;
-            bottom: 0;
-            left: 80%;
-        }
-        
-        .third li {
-            list-style: none;
-            padding-bottom: 15px;
-        }
-        
-        .third a {
-            color: rgb(206, 206, 206);
-            text-decoration: none;
-            letter-spacing: 3px;
-            font-weight: bold;
-            font-size: 14px;
-            transition: 0.2s;
-        }
-        
-        .third a:hover {
-            color: #fff;
-            transition: 0.2s;
-            text-shadow: 1px 1px 20px rgba(0, 0, 0, 1);
-        }
-        
-        @media screen and (max-width:1000px) {
-            .first {
-                text-align: center;
-            }
-            .first h4::after {
-                left: 40%;
-            }
-        }
-        
-        @media screen and (max-width:1000px) {
-            .third {
-                text-align: center;
-            }
-            .third h4::after {
-                left: 40% !important;
-            }
         }
         
         .margin {
@@ -444,6 +368,9 @@
                 color: white;
                 font-size: 2rem;
                 border: white;
+            }
+            .sort-info {
+                max-width: 200px;
             }
         }
         

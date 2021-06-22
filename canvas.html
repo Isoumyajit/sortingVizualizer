@@ -24,20 +24,20 @@
         <label for="menu-bar" class="fas fa-bars"></label>
         <nav class="navbar">
             <button type="button" id="bubble_srt_btn" class="navbar-btn btn btn-outline" onclick="bubbleSort() ; disable()">
-          Bubble Sort
-        </button>
+                Bubble Sort
+            </button>
             <button type="button" id="quick_srt_btn" class="btn btn-outline navbar-btn" onclick="quickSort(); disable()">
-          Quick Sort
-        </button>
+                Quick Sort
+            </button>
             <button type="button" id="merge_srt_btn" class="btn btn-outline navbar-btn" onclick="mergeSort(); disable()">
-          Merge Sort
-        </button>
+                Merge Sort
+            </button>
             <button type="button" id="selection_srt_btn" class="btn btn-outline navbar-btn" onclick="selectionSort() ; disable()">
-          Selection Sort
-        </button>
+                Selection Sort
+            </button>
             <button type="button" id="insertion_srt_btn" class="btn btn-outline navbar-btn" onclick="insertionSort(); disable()">
-          Insertion Sort
-        </button>
+                Insertion Sort
+            </button>
         </nav>
     </header>
     <!-- Header ends here  -->
@@ -48,30 +48,51 @@
         </section>
         <div class="buttons">
             <button type="button" id="btn1" class="btn btn-control" onclick="generateOnClick()">
-          Generate new Array
-        </button>
+                Generate new Array
+            </button>
             <button type="button" id="btn2" class="btn btn-control" onclick="pauseOnClick()">
-          Pause
-        </button>
+                Pause
+            </button>
             <button type="button" id="btn3" class="btn btn-control" onclick="resumeOnClick()">
-          Resume
-        </button>
+                Resume
+            </button>
         </div>
         <hr />
     </section>
-    <div class="information">
-        <div class="sort-info merge-sort">
+    <div id="information" class="container padding-content col-12">
+        <div class="sort-info merge-sort col-12">
             <h2>Merge Sort</h2>
             <h3>Algorithm</h3>
-            <p>nvfknvknkfvn</p>
+            <p>
+                Like QuickSort, Merge Sort is a Divide and Conquer algorithm. It divides the input array into two halves, calls itself for the two halves, and then merges the two sorted halves. The merge() function is used for merging two halves. The merge(arr, l, m,
+                r) is a key process that assumes that arr[l..m] and arr[m+1..r] are sorted and merges the two sorted sub-arrays into one. See the following C implementation for details.
+                <div class="image"><img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/Merge-Sort-Tutorial.png" alt="image"></div>
+                <h3>Example:</h3>
+
+                <h3>Time Complexity :</h3><br>
+                <br>
+                <p>Sorting arrays on different machines. Merge Sort is a recursive algorithm and time complexity can be expressed as following recurrence relation.<br>
+                    <h3>T(n) = 2T(n/2) + θ(n)</h3><br> The above recurrence can be solved either using the Recurrence Tree method or the Master method. It falls in case II of Master Method and the solution of the recurrence is θ(nLogn). Time complexity of
+                    Merge Sort is θ(nLogn) in all 3 cases (worst, average and best) as merge sort always divides the array into two halves and takes linear time to merge two halves. Auxiliary Space: O(n) Algorithmic Paradigm: Divide and Conquer Sorting
+                    In Place: No in a typical implementation Stable: Yes
+                </p>
+                <br><br>
+                <h3>Time Complexity :</h3><br>
+                <br>
+                <h5>Best Time: O(NlogN)</h5>
+                <br>
+                <h5>Average Time: O(NlogN)</h5>
+                <br>
+                <h5>Worst Time: O(NlogN)</h5>
+            </p>
         </div>
-        <div class="sort-info bubble-sort">
+        <div class="sort-info bubble-sort col-12">
             <h2>bubble Sort</h2>
             <h3>Algorithm</h3>
-            <p>
+            <p class="mb-lg-0">
                 Bubble Sort is the simplest sorting algorithm that works by repeatedly swapping the adjacent elements if they are in wrong order.
-                <br /> This sorting algorithm is comparison-based algorithm in which each pair of adjacent elements is compared and the elements are swapped if they are not in order. This algorithm is not suitable for large data sets as its average and
-                worst case complexity are of Ο(n2) where n is the number of items.
+                <br /> This sorting algorithm is comparison-based algorithm in which each pair of adjacent elements is compared and the elements are swapped if they are not in order.<br> This algorithm is not suitable for large data sets as its average
+                and worst case complexity are of Ο(n2) where n is the number of items.
 
                 <h3>Example:</h3>
                 <br> First Pass: ( 5 1 4 2 8 ) –> ( 1 5 4 2 8 ),
@@ -96,61 +117,103 @@
                 <h5>Worst Time: O(N^2)</h5>
             </p>
         </div>
+        <div class="sort-info quick-sort col-12">
+            <h2>Quick Sort</h2>
+            <h3>Algorithm :</h3>
+            <p class="mb-lg-0">
+                <div class="algo-info">
+                    <p>QuickSort is a Divide and Conquer algorithm. It picks an element as pivot and partitions the given array around the picked pivot. There are many different versions of quickSort that pick pivot in different ways. Always pick first element
+                        as pivot. Always pick last element as pivot (implemented below) Pick a random element as pivot. Pick median as pivot. The key process in quickSort is partition(). Target of partitions is, given an array and an element x of array
+                        as pivot, put x at its correct position in sorted array and put all smaller elements (smaller than x) before x, and put all greater elements (greater than x) after x. All this should be done in linear time.</p>
+                    <h3>Partition Algorithm </h3><br>
+                    <p>
+                        There can be many ways to do partition, following pseudo code adopts the method given in CLRS book. The logic is simple, we start from the leftmost element and keep track of index of smaller (or equal to) elements as i. While traversing, if we find a
+                        smaller element, we swap current element with arr[i]. Otherwise we ignore current element.</p>
+                </div>
+                <pre class="algo-code">
+                    <code class="codes">
+                         low --> Starting index, high --> Ending index 
+                          quickSort(arr[], low, high) 
+                          { if (low < high) 
+                             { /* pi is partitioning index, arr[pi] is now at right place */ 
+                                pi=p artition(arr, low, high);
+                                 quickSort(arr, low, pi - 1); // Before
+                                 pi quickSort(arr, pi + 1, high); // After pi 
+                                } 
+                            }
+                        </code>
+                </pre>
+                <div class="image"><img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/Merge-Sort-Tutorial.png" alt="image"></div>
+                <br><br>
+                <h3>Time Complexity :</h3><br>
+                <br>
+                <h5>Best Time: O(NlogN)</h5>
+                <br>
+                <h5>Average Time: O(NlogN)</h5>
+                <br>
+                <h5>Worst Time: O(N^2)</h5>
+            </p>
+        </div>
+        <div class="sort-info insertion-sort col-12">
+            <h2>Insertion Sort</h2>
+            <h3>Algorithm :</h3>
+            <p class="mb-lg-0">
+                <div class="algo-info">
+                    <p>Insertion sort is a simple sorting algorithm that works similar to the way you sort playing cards in your hands. The array is virtually split into a sorted and an unsorted part. Values from the unsorted part are picked and placed at
+                        the correct position in the sorted part. Algorithm To sort an array of size n in ascending order: <br><br>1: Iterate from arr[1] to arr[n] over the array. <br>2: Compare the current element (key) to its predecessor. <br>3: If the
+                        key element is smaller than its predecessor, compare it to the elements before. Move the greater elements one position up to make space for the swapped element.</p>
+                </div>
+                <div class="image"><img src="https://media.geeksforgeeks.org/wp-content/uploads/insertionsort.png" alt="image"></div>
+                <br><br>
+                <h3>Time Complexity :</h3><br>
+                <br>
+                <h5>Best Time: O(N)</h5>
+                <br>
+                <h5>Average Time: O(N^2)</h5>
+                <br>
+                <h5>Worst Time: O(N^2)</h5>
+            </p>
+        </div>
+        <div class="sort-info selection-sort col-12">
+            <h2>Selection Sort</h2>
+            <h3>Algorithm :</h3>
+            <p class="mb-lg-0">
+                <div class="algo-info">
+                    <p>The selection sort algorithm sorts an array by repeatedly finding the minimum element (considering ascending order) from unsorted part and putting it at the beginning. The algorithm maintains two subarrays in a given array.<br>
+                        <br>1) The subarray which is already sorted.
+                        <br>2) Remaining subarray which is unsorted.
+                        <br>In every iteration of selection sort, the minimum element (considering ascending order) from the unsorted subarray is picked and moved to the sorted subarray. </p>
+                </div>
+                <pre class="algo-code">
+                    <code class="codes">
+                        <p>arr[] = 64 25 12 22 11 //<br> Find the minimum element in arr[0...4] <br>// and place it at beginning 11 25 12 22 64 <br>// Find the minimum element in arr[1...4] <br>// and place it at beginning of arr[1...4] 11 12 25 22 64 <br>//
+                            Find the minimum element in arr[2...4] <br>// and place it at beginning of arr[2...4] 11 12 22 25 64 <br>// Find the minimum element in arr[3...4] <br>// and place it at beginning of arr[3...4] 11 12 22 25 64 </p>
+                    </code>
+                </pre>
+                <br>
+                <h3>Time Complexity :</h3><br>
+                <br>
+                <h5>Best Time: O(N^2)</h5>
+                <br>
+                <h5>Average Time: O(N^2)</h5>
+                <br>
+                <h5>Worst Time: O(N^2)</h5>
+
+            </p>
+        </div>
     </div>
     <div class="footer">
         <div class="container">
             <div class="row">
-                <div class="col-md-4 col-xs-12">
-                    <div class="first">
-                        <h4>My Skills</h4>
-                        <p> Analytical Skills</p>
-                        <p> Problem-solving skills</p>
-                        <p> Critical-thinking skills</p>
-                        <p> Detail-oriented</p>
-                        <p> Multitasking</p>
-                        <p> Self-motivated</p>
+                <div class="col-12 ">
+                    <div class="dev-info">
+                        <h3 align="center">Developed by @soumyajit-chakraborty</h3>
                     </div>
-                </div>
-
-                <div class="col-md-4 col-xs-12">
-                    <div class="second">
-                        <h4> Navigate</h4>
-                        <ul>
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Projects</a></li>
-                            <li><a href="#">About</a></li>
-                            <li><a href="#">Contact</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-xs-12">
-                    <div class="third">
-                        <h4> Contact</h4>
-                        <ul>
-                            <li>Andreea Mihaela Bunget </li>
-                            <li></li>
-
-
-                            <li><i class="far fa-envelope"></i> andreea@andreeabunget.co.uk</li>
-                            <li><i class="far fa-envelope"></i> email@yahoo.com</li>
-
-
-                            <li><i class="fas fa-map-marker-alt"></i> London, UK </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="line"></div>
-                    <div class="second2">
-                        <a href="https://codepen.io/AndreeaBunget" target="_blank"> <i class="fab fa-codepen fa-2x margin"></i></a>
-                        <a href="https://github.com/WebDeveloperCodeRep" target="_blank"> <i class="fab fa-github fa-2x margin"></i></a>
-                        <a href="https://www.linkedin.com/in/andreea-mihaela-bunget-a4248812b/" target="_blank"> <i class="fab fa-linkedin fa-2x margin"></i></a>
-                        <a href="https://www.youtube.com/channel/UCX674BUbomzBCakbb75lhfA?view_as=subscriber" target="_blank"><i class="fab fa-youtube fa-2x margin" ></i></a>
+                    <div class="second2 ">
+                        <a href="https://github.com/Isoumyajit " target="_blank "> <i class="fab fa-github fa-2x margin "></i></a>
+                        <a href="https://www.linkedin.com/in/soumyajit-chakraborty-914352121/ " target="_blank "> <i class="fab fa-linkedin fa-2x margin "></i></a>
+                        <a href="https://www.facebook.com/soumyajit.chakraborty.16100/ " target="_blank "><i
+                                class="fab fa-facebook fa-2x margin "></i></a>
 
                     </div>
 
@@ -162,6 +225,7 @@
 
 <!-- linking index.js -->
 <script src=" js/main.js "></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js " integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4 " crossorigin="anonymous ">
+</script>
 
 </html>

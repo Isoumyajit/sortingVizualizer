@@ -1,7 +1,21 @@
 "use strict";
 const container = document.querySelector(".bars-container");
+removeDiv();
+
+function removeDiv() {
+    document.querySelector(".padding-content").style.display = "none";
+    const all = document.querySelectorAll(".sort-info");
+    all.forEach(function(item) { item.style.display = "none"; });
+}
+
+function enableDiv(_id) {
+    document.querySelector(".padding-content").style.display = "block";
+    document.querySelector("." + _id).style.display = "block";
+}
+
 // var flag = true;
 // function to generate bars
+
 function generatebars(num = 20) {
     //for loop to generate 20 bars
     for (let i = 0; i < num; i += 1) {
@@ -38,10 +52,8 @@ function generatebars(num = 20) {
 }
 
 async function mergeSort(delay = 300) {
-
-    const qAll = document.querySelectorAll(".sort-info");
-    qAll.forEach((el) => el.classList.remove("show"));
-    document.querySelector(".merge-sort").classList.add("show");
+    removeDiv();
+    enableDiv("merge-sort");
     document.getElementById("merge_srt_btn").style.backgroundColor = "red";
     let bars = document.querySelectorAll(".bar");
     await sortData(bars, 0, bars.length - 1);
@@ -65,7 +77,7 @@ async function sortData(array, low, high) {
 }
 
 async function merge(array, low1, high1, low2, high2) {
-    document.querySelector(".information").innerHTML = '';
+
     var len_array = high2 - low1 + 1;
     var helper = new Array(len_array);
     var helper_take_height = new Array(len_array);
@@ -140,10 +152,11 @@ async function merge(array, low1, high1, low2, high2) {
         array[i].style.backgroundColor = "rgb(49, 226, 13)";
     }
 }
+
 async function bubbleSort(delay = 300) {
-    const qAll = document.querySelectorAll(".sort-info");
-    qAll.forEach((el) => el.classList.remove("show"));
-    document.querySelector(".bubble-sort").classList.add("show");
+
+    removeDiv();
+    enableDiv("bubble-sort");
     document.getElementById("bubble_srt_btn").style.backgroundColor = "red";
     let bars = document.querySelectorAll(".bar");
 
@@ -191,6 +204,8 @@ async function bubbleSort(delay = 300) {
 }
 
 async function quickSort(delay = 300) {
+    removeDiv();
+    enableDiv("quick-sort");
     document.getElementById("quick_srt_btn").style.backgroundColor = "red";
     let bars = document.querySelectorAll(".bar");
     await quick(bars, 0, bars.length - 1);
@@ -286,6 +301,8 @@ async function find_pivot(array, low, high) {
 
 // asynchronous function to perform "Insertion Sort"
 async function insertionSort(delay = 600) {
+    removeDiv();
+    enableDiv("insertion-sort");
     document.getElementById("insertion_srt_btn").style.backgroundColor = "red";
     let bars = document.querySelectorAll(".bar");
     for (var i = 0; i < bars.length; i += 1) {
@@ -331,6 +348,8 @@ async function insertionSort(delay = 600) {
 }
 // asynchronous function to perform "Selection Sort"
 async function selectionSort(delay = 300) {
+    removeDiv();
+    enableDiv("selection-sort");
     document.getElementById("selection_srt_btn").style.backgroundColor = "red";
     let bars = document.querySelectorAll(".bar");
     // Assign 0 to min_idx
@@ -401,6 +420,7 @@ generatebars();
 // function to generate new random array
 function generateOnClick() {
     document.querySelector(".bars-container").innerHTML = "";
+    removeDiv();
     generatebars();
 }
 
