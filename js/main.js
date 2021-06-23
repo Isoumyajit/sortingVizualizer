@@ -346,6 +346,112 @@ async function insertionSort(delay = 600) {
     }
     enable();
 }
+async function heapify(array, i, n) {
+    //console.log(i, n);
+    // console.log("heap");
+    var leftchild = 2 * i + 1;
+    var rightchild = leftchild + 1;
+    var pivot = i;
+    array[pivot].style.backgroundColor = "red";
+    await new Promise((resolve) =>
+        setTimeout(() => {
+            resolve();
+        }, 300)
+    );
+    if (leftchild < n)
+        array[leftchild].style.backgroundColor = "blue";
+    await new Promise((resolve) =>
+        setTimeout(() => {
+            resolve();
+        }, 500)
+    );
+    if (rightchild < n)
+        array[rightchild].style.backgroundColor = "blue";
+
+    if (leftchild < n && (parseInt(array[leftchild].childNodes[0].innerHTML) > parseInt(array[pivot].childNodes[0].innerHTML))) {
+        array[pivot].style.backgroundColor = "pink";
+        await new Promise((resolve) =>
+            setTimeout(() => {
+                resolve();
+            }, 300)
+        );
+        array[pivot].style.backgroundColor = "rgb(24, 190, 255)";
+        pivot = leftchild;
+        array[pivot].style.backgroundColor = "red";
+    }
+    if (rightchild < n && (parseInt(array[rightchild].childNodes[0].innerHTML) > parseInt(array[pivot].childNodes[0].innerHTML))) {
+        array[pivot].style.backgroundColor = "pink";
+        await new Promise((resolve) =>
+            setTimeout(() => {
+                resolve();
+            }, 300)
+        );
+        array[pivot].style.backgroundColor = " rgb(24, 190, 255)";
+        pivot = rightchild;
+        array[pivot].style.backgroundColor = "red";
+    }
+    await new Promise((resolve) =>
+        setTimeout(() => {
+            resolve();
+        }, 300)
+    );
+    array[pivot].style.backgroundColor = "rgb(24, 190, 255)";
+    if (leftchild < n)
+        array[leftchild].style.backgroundColor = "rgb(24, 190, 255)";
+    if (rightchild < n)
+        array[rightchild].style.backgroundColor = "rgb(24, 190, 255)";
+    if (pivot != i) {
+        array[pivot].style.backgroundColor = "rgb(24, 190, 255)";
+        await swap(array, i, pivot);
+        await heapify(array, pivot, n);
+    }
+
+}
+async function swap(bars, a, b) {
+    var temp1 = bars[a].style.height;
+    var temp2 = bars[a].childNodes[0].innerText;
+    bars[a].style.height = bars[b].style.height;
+    bars[b].style.height = temp1;
+    bars[a].childNodes[0].innerText = bars[b].childNodes[0].innerText;
+    bars[b].childNodes[0].innerText = temp2;
+
+    // To pause the execution of code for 300 milliseconds
+    await new Promise((resolve) =>
+        setTimeout(() => {
+            resolve();
+        }, 300)
+    );
+}
+async function heapSort(delay = 300) {
+
+    removeDiv();
+    enableDiv("heap-sort");
+    document.getElementById("heap_srt_btn").style.backgroundColor = "red";
+    let bars = document.querySelectorAll(".bar");
+    var n = bars.length;
+    for (var i = 0; i < n; i++) {
+        bars[i].style.backgroundColor = " rgb(24, 190, 255)";
+    }
+
+    for (var i = (Math.floor(n / 2) - 1); i >= 0; i--) {
+        await heapify(bars, i, n);
+    }
+    for (var i = n - 1; i >= 0; i--) {
+        await swap(bars, 0, i);
+        bars[i].style.backgroundColor = " rgb(49, 226, 13)";
+        await heapify(bars, 0, i);
+        await new Promise((resolve) =>
+            setTimeout(() => {
+                resolve();
+            }, 300)
+        );
+    }
+    for (var i = 0; i < n; i++) {
+        bars[i].style.backgroundColor = " rgb(49, 226, 13)";
+    }
+    enable();
+
+}
 // asynchronous function to perform "Selection Sort"
 async function selectionSort(delay = 300) {
     removeDiv();
@@ -442,6 +548,7 @@ function disable() {
     document.getElementById("merge_srt_btn").disabled = true;
     document.getElementById("insertion_srt_btn").disabled = true;
     document.getElementById("quick_srt_btn").disabled = true;
+    document.getElementById("heap_srt_btn").disabled = true;
 }
 
 function enable() {
@@ -450,11 +557,13 @@ function enable() {
     document.getElementById("merge_srt_btn").disabled = false;
     document.getElementById("insertion_srt_btn").disabled = false;
     document.getElementById("quick_srt_btn").disabled = false;
+    document.getElementById("heap_srt_btn").disabled = false;
     document.getElementById("insertion_srt_btn").style.backgroundColor = "#00BF7F";
     document.getElementById("quick_srt_btn").style.backgroundColor = "#00BF7F";
     document.getElementById("merge_srt_btn").style.backgroundColor = "#00BF7F";
     document.getElementById("bubble_srt_btn").style.backgroundColor = "#00BF7F";
     document.getElementById("selection_srt_btn").style.backgroundColor = "#00BF7F";
+    document.getElementById("heap_srt_btn").style.backgroundColor = "#00BF7F";
     // To enable the button "Generate New Array" after final(sorted)
     document.getElementById("btn1").disabled = false;
     document.getElementById("btn1").style.backgroundColor = "#6f459e";

@@ -58,8 +58,8 @@
         header .navbar button {
             background: transparent;
             font-weight: 700;
-            padding: 0.4rem 1.4rem;
-            font-size: 1.7rem;
+            padding: 0.2rem 1.2rem;
+            font-size: 1.5rem;
             margin-left: 2rem;
             line-height: 2rem;
             border-color: #00BF7F;
@@ -225,21 +225,24 @@
         }
         
         .algo-code {
+            position: relative;
             background-color: #012a58;
-            width: fit-content;
+            width: auto;
             height: fit-content;
-            align-items: baseline;
+            padding: 2rem;
             border-radius: 2rem;
             box-shadow: 0 0.1rem 0.5rem 0.5rem rgba(15, 14, 14, 0.1);
         }
         
         .codes {
+            position: relative;
             font-size: 10px;
             line-height: 2rem;
             padding: 1rem;
             margin: 2rem 2rem 2rem 2rem;
             margin-right: 4rem;
-            color: #F83292;
+            color: #f5f832;
+            font-size: 1.2rem;
             width: 200px;
             height: 400px;
             align-items: flex-start;
@@ -366,7 +369,7 @@
                 background-color: #6f459e;
                 border-radius: 10px;
                 color: white;
-                font-size: 2rem;
+                font-size: 1.2rem;
                 border: white;
             }
             .sort-info {
@@ -388,5 +391,24 @@
                 align-items: center;
                 margin-bottom: 10px;
                 border-radius: 30px;
+            }
+            header .navbar {
+                display: flex;
+                flex-direction: column;
+                padding: 1rem 1.1rem;
+                font-size: 0.9rem;
+                line-height: 10rem;
+                /* background: transparent;
+                font-weight: 700;
+                padding: 1rem 1.1rem;
+                font-size: 0.9rem;
+                margin-left: 0.2rem;
+                line-height: 0.3rem;
+                border-color: #00BF7F;
+                border-radius: 20px;
+                border-style: solid;
+                border-width: 0.1rem;
+                color: #000;
+                justify-content: space-between; */
             }
         }
