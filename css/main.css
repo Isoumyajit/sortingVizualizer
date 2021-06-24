@@ -92,7 +92,8 @@
         
         header img {
             width: 2rem;
-            height: auto;
+            height: 2rem;
+            position: relative;
         }
         
         section {
