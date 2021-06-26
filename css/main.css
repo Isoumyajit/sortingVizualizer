@@ -96,11 +96,107 @@
             position: relative;
         }
         
-        section {
-            min-height: 50vh;
-            padding: 0.9%;
-            padding-top: 7.3rem;
+        .range {
+            place-items: center;
+            text-align: center;
+            margin-top: 14rem;
+            margin-bottom: 0px;
+            display: grid;
+            height: 6rem;
+            width: 25rem;
+            background: #1291f8;
+            border-radius: 10px;
+            box-shadow: 0 3rem 3rem 1rem rgba(47, 86, 145, 0.1);
+            ;
+        }
+        
+        .range {
+            font-weight: 600;
+        }
+        
+        .range .field {
             position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+        
+        .range .sliderValue {
+            position: relative;
+            width: 100%;
+        }
+        
+        .range .sliderValue span {
+            position: absolute;
+            height: 30px;
+            width: 30px;
+            color: #fff;
+            font-weight: 500;
+            top: -40px;
+            transform: translateX(-50%) scale(0);
+            transform-origin: bottom;
+            transition: transform 0.3s ease-in-out;
+            line-height: 55px;
+            z-index: 2;
+        }
+        
+        .range .sliderValue span.show {
+            transform: translateX(-50%) scale(1);
+        }
+        
+        .range .sliderValue span:after {
+            position: absolute;
+            content: "";
+            height: 45px;
+            width: 45px;
+            background: #9e2e98;
+            left: 50%;
+            transform: translateX(-50%) rotate(45deg);
+            border: 0.2rem solid #fff;
+            z-index: -1;
+            border-top-left-radius: 50%;
+            border-top-right-radius: 50%;
+            border-bottom-left-radius: 50%
+        }
+        
+        .range .field input {
+            -webkit-appearance: none;
+            height: 1rem;
+            width: 100%;
+            background: rgb(241, 197, 197);
+            border-radius: 5px;
+            border: none;
+            outline: none;
+        }
+        
+        .range .field .value.left {
+            left: -22px;
+        }
+        
+        .range .field .value.right {
+            right: -40px;
+        }
+        
+        .range .field .value {
+            position: absolute;
+            font-size: 15px;
+            font-weight: 600;
+            color: #96e993;
+        }
+        
+        .range .field input::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 20px;
+            width: 20px;
+            background: #664AFF;
+            border-radius: 50%;
+            border: 0.2rem solid #664AFF;
+            cursor: pointer;
+        }
+        
+        .range .field input::-moz-range-progress {
+            background: #664AFF;
         }
         
         .canvas {

@@ -1,4 +1,16 @@
 "use strict";
+const rangeValue = document.querySelector(".rangeValue");
+const inputSlider = document.querySelector(".input-range");
+inputSlider.oninput = (() => {
+    let val = inputSlider.value;
+    rangeValue.textContent = val;
+    rangeValue.style.left = (val / 2) + "%";
+    rangeValue.classList.add("show");
+
+});
+inputSlider.onblur = (() => {
+    rangeValue.classList.remove("show");
+});
 const container = document.querySelector(".bars-container");
 removeDiv();
 
@@ -13,7 +25,19 @@ function enableDiv(_id) {
     document.querySelector("." + _id).style.display = "block";
 }
 
-// var flag = true;
+function getSpeed() {
+    let speed = parseInt(document.querySelector(".input-range").value);
+
+    if (speed > 50) {
+        return (300 - (300 - speed) % 300);
+    } else if (speed < 50) {
+        console.log("low speed");
+        return (300 - (speed + 300) % 300);
+    } else {
+        return speed;
+    }
+
+}
 // function to generate bars
 
 function generatebars(num = 20) {
@@ -62,21 +86,22 @@ async function mergeSort(delay = 300) {
 
 async function sortData(array, low, high) {
     if (low < high) {
+        let speed = getSpeed();
         var mid = Math.floor(high - (high - low) / 2);
         array[mid].style.backgroundColor = "red";
         await new Promise((resolve) =>
             setTimeout(() => {
                 resolve();
-            }, 500)
+            }, speed)
         );
         await sortData(array, low, mid);
         await sortData(array, mid + 1, high);
-        await merge(array, low, mid, mid + 1, high);
+        await merge(array, low, mid, mid + 1, high, speed);
 
     }
 }
 
-async function merge(array, low1, high1, low2, high2) {
+async function merge(array, low1, high1, low2, high2, speed) {
 
     var len_array = high2 - low1 + 1;
     var helper = new Array(len_array);
@@ -90,7 +115,7 @@ async function merge(array, low1, high1, low2, high2) {
         await new Promise((resolve) =>
             setTimeout(() => {
                 resolve();
-            }, 500)
+            }, speed)
         );
         array[i].style.backgroundColor = "blue";
         array[j].style.backgroundColor = "blue";
@@ -104,7 +129,7 @@ async function merge(array, low1, high1, low2, high2) {
             await new Promise((resolve) =>
                 setTimeout(() => {
                     resolve();
-                }, 500)
+                }, speed)
             );
         } else if (parseInt(array[i].childNodes[0].innerHTML) >= parseInt(array[j].childNodes[0].innerHTML)) {
             array[i].style.backgroundColor = "yellow";
@@ -116,7 +141,7 @@ async function merge(array, low1, high1, low2, high2) {
             await new Promise((resolve) =>
                 setTimeout(() => {
                     resolve();
-                }, 500)
+                }, speed)
             );
         }
         if (j < high2 && i < high1) {
@@ -145,7 +170,7 @@ async function merge(array, low1, high1, low2, high2) {
         await new Promise((resolve) =>
             setTimeout(() => {
                 resolve();
-            }, 500)
+            }, speed)
         );
         array[i].childNodes[0].innerHTML = helper[k];
         array[i].style.height = helper_take_height[k];
@@ -157,6 +182,8 @@ async function bubbleSort(delay = 300) {
 
     removeDiv();
     enableDiv("bubble-sort");
+    var speed = getSpeed();
+    console.log(speed);
     document.getElementById("bubble_srt_btn").style.backgroundColor = "red";
     let bars = document.querySelectorAll(".bar");
 
@@ -172,13 +199,13 @@ async function bubbleSort(delay = 300) {
             await new Promise((resolve) =>
                 setTimeout(() => {
                     resolve();
-                }, 300)
+                }, speed)
             );
             if (a > b) {
                 await new Promise((resolve) =>
                     setTimeout(() => {
                         resolve();
-                    }, 200)
+                    }, speed)
                 );
                 bars[j].childNodes[0].innerText = b;
                 bars[j].style.height = height_b;
@@ -193,7 +220,7 @@ async function bubbleSort(delay = 300) {
             await new Promise((resolve) =>
                 setTimeout(() => {
                     resolve();
-                }, 300)
+                }, speed + speed)
             );
         }
         bars[j].style.backgroundColor = "rgb(49, 226, 13)";
@@ -217,14 +244,15 @@ async function quickSort(delay = 300) {
 
 async function quick(array, low, high) {
     if (low < high) {
-        var mid = await find_pivot(array, low, high);
+        let speed = getSpeed();
+        var mid = await find_pivot(array, low, high, speed);
         array[mid].style.backgroundColor = " rgb(49, 226, 13)";
         await quick(array, low, mid - 1);
         await quick(array, mid + 1, high);
     }
 }
 
-async function find_pivot(array, low, high) {
+async function find_pivot(array, low, high, speed) {
     var i = low;
     var j = high + 1;
     var pivot = parseInt(array[i].childNodes[0].innerText);
@@ -235,7 +263,7 @@ async function find_pivot(array, low, high) {
         await new Promise((resolve) =>
             setTimeout(() => {
                 resolve();
-            }, 300)
+            }, speed)
         );
         do {
             i += 1;
@@ -243,7 +271,7 @@ async function find_pivot(array, low, high) {
             await new Promise((resolve) =>
                 setTimeout(() => {
                     resolve();
-                }, 300)
+                }, speed)
             );
             array[i].style.backgroundColor = "rgb(24, 190, 255)";
         } while (pivot > parseInt(array[i].childNodes[0].innerHTML) && i < high);
@@ -256,7 +284,7 @@ async function find_pivot(array, low, high) {
             await new Promise((resolve) =>
                 setTimeout(() => {
                     resolve();
-                }, 500)
+                }, speed)
             );
             array[j].style.backgroundColor = "  rgb(24, 190, 255)";
         } while (pivot < parseInt(array[j].childNodes[0].innerHTML));
@@ -267,7 +295,7 @@ async function find_pivot(array, low, high) {
             await new Promise((resolve) =>
                 setTimeout(() => {
                     resolve();
-                }, 500)
+                }, speed)
             );
             var a = parseInt(array[i].childNodes[0].innerHTML);
             var b = parseInt(array[j].childNodes[0].innerHTML);
@@ -293,17 +321,18 @@ async function find_pivot(array, low, high) {
     await new Promise((resolve) =>
         setTimeout(() => {
             resolve();
-        }, 500)
+        }, speed)
     );
 
     return j;
 }
 
 // asynchronous function to perform "Insertion Sort"
-async function insertionSort(delay = 600) {
+async function insertionSort(delay = 300) {
     removeDiv();
     enableDiv("insertion-sort");
     document.getElementById("insertion_srt_btn").style.backgroundColor = "red";
+    let speed = getSpeed();
     let bars = document.querySelectorAll(".bar");
     for (var i = 0; i < bars.length; i += 1) {
         var j = i;
@@ -319,7 +348,7 @@ async function insertionSort(delay = 600) {
             await new Promise((resolve) =>
                 setTimeout(() => {
                     resolve();
-                }, 600)
+                }, speed)
             );
 
             if (value < valueleft) {
@@ -334,11 +363,11 @@ async function insertionSort(delay = 600) {
             k--;
         }
 
-        // To pause the execution of code for 300 milliseconds
+        // To pause the execution of code for speed milliseconds
         await new Promise((resolve) =>
             setTimeout(() => {
                 resolve();
-            }, 600)
+            }, speed)
         );
     }
     for (var i = 0; i < bars.length; i++) {
@@ -346,7 +375,7 @@ async function insertionSort(delay = 600) {
     }
     enable();
 }
-async function heapify(array, i, n) {
+async function heapify(array, i, n, speed) {
     //console.log(i, n);
     // console.log("heap");
     var leftchild = 2 * i + 1;
@@ -356,14 +385,14 @@ async function heapify(array, i, n) {
     await new Promise((resolve) =>
         setTimeout(() => {
             resolve();
-        }, 300)
+        }, speed)
     );
     if (leftchild < n)
         array[leftchild].style.backgroundColor = "blue";
     await new Promise((resolve) =>
         setTimeout(() => {
             resolve();
-        }, 500)
+        }, speed)
     );
     if (rightchild < n)
         array[rightchild].style.backgroundColor = "blue";
@@ -373,7 +402,7 @@ async function heapify(array, i, n) {
         await new Promise((resolve) =>
             setTimeout(() => {
                 resolve();
-            }, 300)
+            }, speed)
         );
         array[pivot].style.backgroundColor = "rgb(24, 190, 255)";
         pivot = leftchild;
@@ -384,7 +413,7 @@ async function heapify(array, i, n) {
         await new Promise((resolve) =>
             setTimeout(() => {
                 resolve();
-            }, 300)
+            }, speed)
         );
         array[pivot].style.backgroundColor = " rgb(24, 190, 255)";
         pivot = rightchild;
@@ -393,7 +422,7 @@ async function heapify(array, i, n) {
     await new Promise((resolve) =>
         setTimeout(() => {
             resolve();
-        }, 300)
+        }, speed)
     );
     array[pivot].style.backgroundColor = "rgb(24, 190, 255)";
     if (leftchild < n)
@@ -402,12 +431,12 @@ async function heapify(array, i, n) {
         array[rightchild].style.backgroundColor = "rgb(24, 190, 255)";
     if (pivot != i) {
         array[pivot].style.backgroundColor = "rgb(24, 190, 255)";
-        await swap(array, i, pivot);
-        await heapify(array, pivot, n);
+        await swap(array, i, pivot, speed);
+        await heapify(array, pivot, n, speed);
     }
 
 }
-async function swap(bars, a, b) {
+async function swap(bars, a, b, speed) {
     var temp1 = bars[a].style.height;
     var temp2 = bars[a].childNodes[0].innerText;
     bars[a].style.height = bars[b].style.height;
@@ -415,17 +444,18 @@ async function swap(bars, a, b) {
     bars[a].childNodes[0].innerText = bars[b].childNodes[0].innerText;
     bars[b].childNodes[0].innerText = temp2;
 
-    // To pause the execution of code for 300 milliseconds
+    // To pause the execution of code for speed milliseconds
     await new Promise((resolve) =>
         setTimeout(() => {
             resolve();
-        }, 300)
+        }, speed)
     );
 }
 async function heapSort(delay = 300) {
 
     removeDiv();
     enableDiv("heap-sort");
+    let speed = getSpeed();
     document.getElementById("heap_srt_btn").style.backgroundColor = "red";
     let bars = document.querySelectorAll(".bar");
     var n = bars.length;
@@ -434,16 +464,16 @@ async function heapSort(delay = 300) {
     }
 
     for (var i = (Math.floor(n / 2) - 1); i >= 0; i--) {
-        await heapify(bars, i, n);
+        await heapify(bars, i, n, speed);
     }
     for (var i = n - 1; i >= 0; i--) {
-        await swap(bars, 0, i);
+        await swap(bars, 0, i, speed);
         bars[i].style.backgroundColor = " rgb(49, 226, 13)";
         await heapify(bars, 0, i);
         await new Promise((resolve) =>
             setTimeout(() => {
                 resolve();
-            }, 300)
+            }, speed)
         );
     }
     for (var i = 0; i < n; i++) {
@@ -457,6 +487,7 @@ async function selectionSort(delay = 300) {
     removeDiv();
     enableDiv("selection-sort");
     document.getElementById("selection_srt_btn").style.backgroundColor = "red";
+    let speed = getSpeed();
     let bars = document.querySelectorAll(".bar");
     // Assign 0 to min_idx
     var min_idx = 0;
@@ -470,11 +501,11 @@ async function selectionSort(delay = 300) {
             // Provide red color to the jth bar
             bars[j].style.backgroundColor = "red";
 
-            // To pause the execution of code for 300 milliseconds
+            // To pause the execution of code for speed milliseconds
             await new Promise((resolve) =>
                 setTimeout(() => {
                     resolve();
-                }, 300)
+                }, speed)
             );
 
             // To store the integer value of jth bar to var1
@@ -504,11 +535,11 @@ async function selectionSort(delay = 300) {
         bars[min_idx].childNodes[0].innerText = bars[i].childNodes[0].innerText;
         bars[i].childNodes[0].innerText = temp2;
 
-        // To pause the execution of code for 300 milliseconds
+        // To pause the execution of code for speed milliseconds
         await new Promise((resolve) =>
             setTimeout(() => {
                 resolve();
-            }, 300)
+            }, speed)
         );
 
         // Provide skyblue color to the (min-idx)th bar
